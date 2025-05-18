@@ -181,6 +181,7 @@ const HandControl = ({ choice, onChoiceSelect }) => {
         >
           Show Choice ({pendingChoice || 'paper'})
         </button>
+        Pull all the finger down for rock 3 for scissor and make the all finger straight for paper
       </div>
     </div>
   );
