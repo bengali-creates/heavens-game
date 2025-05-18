@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
-import HandControl from './HandControl';
+import HandControl, { ComputerHand } from './HandControl';
 
 // Fallback component while loading
 const LoadingFallback = () => (
@@ -110,11 +110,11 @@ const Game = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center justify-center  bg-gray-100">
             <motion.h1 
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="text-4xl font-bold mb-8"
+                className="text-4xl font-bold "
             >
                 Rock Paper Scissors
             </motion.h1>
@@ -122,18 +122,19 @@ const Game = () => {
             <motion.div 
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 0.5 }}
-                className="mb-8"
+                className=""
             >
                 <p className="text-xl">Score:</p>
                 <p>Player: {score.player} - Computer: {score.computer}</p>
             </motion.div>
 
-            {/* Add HandControl component */}
-            <div className="mb-8">
+            {/* Add HandControl and ComputerHand side by side */}
+            <div className="mb-12 flex flex-row justify-center items-center w-full gap-8" style={{ minHeight: 340, overflow: 'visible' }}>
                 <HandControl 
                     choice={playerChoice}
                     onChoiceSelect={handleChoice}
                 />
+                <ComputerHand choice={computerChoice} />
             </div>
 
             <DragDropContext onDragEnd={handleDragEnd}>
